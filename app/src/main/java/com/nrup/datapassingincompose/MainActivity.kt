@@ -17,12 +17,15 @@ import com.nrup.datapassingincompose.composables.SecondScreen
 import com.nrup.datapassingincompose.composables.ThirdScreen
 import com.nrup.datapassingincompose.ui.theme.DataPassingInComposeTheme
 import com.nrup.datapassingincompose.utils.Routes
+import com.nrup.datapassingincompose.viewmodel.MySharedVM
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             DataPassingInComposeTheme {
+
+                val viewModel = MySharedVM()
 
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -32,7 +35,10 @@ class MainActivity : ComponentActivity() {
 
                     NavHost(navController = navController, startDestination = Routes.FIRST_SCREEN) {
                         composable(route = Routes.FIRST_SCREEN) {
-                            FirstScreen(navController = navController)
+                            FirstScreen(
+                                navController = navController,
+                                sharedVM = viewModel
+                            )
                         }
 
 
@@ -47,12 +53,16 @@ class MainActivity : ComponentActivity() {
                                 navController = navController,
                                 myContent = backStackEntry.arguments?.getString(
                                     Routes.Values.SCREEN_VALUE, "Default value"
-                                )
+                                ),
+                                sharedVM = viewModel
                             )
                         }
 
                         composable(route = Routes.THIRD_SCREEN) {
-                            ThirdScreen(navController = navController)
+                            ThirdScreen(
+                                navController = navController,
+                                sharedVM = viewModel
+                            )
                         }
                     }
                 }

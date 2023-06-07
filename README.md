@@ -4,6 +4,8 @@
   - FirstScreen is Start Destination.Has a Text Field to send data to SecondScreen in Argument
   - SecondScreen : Get FirstScreen value and show on Text composable. Button to navigate ThirdScreen
   - ThirdScreen : Has button to navigate SecondScreen and FirstScreen directly by removing stack.
+- In this demo, Every composable component has Shared View Model
+- We set value from Third Screen and get that value in First Screen using Shared View Model
 
 ## Video of my work
 

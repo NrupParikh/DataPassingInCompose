@@ -28,10 +28,11 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.nrup.datapassingincompose.R
 import com.nrup.datapassingincompose.utils.Routes
+import com.nrup.datapassingincompose.viewmodel.MySharedVM
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FirstScreen(navController: NavController) {
+fun FirstScreen(navController: NavController, sharedVM: MySharedVM) {
 
     val textFieldValue = remember { mutableStateOf(TextFieldValue("")) }
 
@@ -70,18 +71,37 @@ fun FirstScreen(navController: NavController) {
         }) {
             Text(text = stringResource(id = R.string.go_to_second_screen))
         }
+
+        // =========== Getting data from Shared View Model and set in Text if not empty.
+        val thirdScreenData = sharedVM.vmData.value
+
+        if(thirdScreenData.isNotEmpty()){
+            Spacer(modifier = Modifier.padding(8.dp))
+
+            Text(
+                text = String.format(
+                    stringResource(id = R.string.data_from_third_screen_is),
+                    thirdScreenData
+                ),
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Normal,
+                fontFamily = FontFamily.Monospace,
+                color = MaterialTheme.colorScheme.secondary
+            )
+        }
+
     }
 }
 
 @Composable
 @Preview(showBackground = true)
 fun LightPreviewFirstScreen() {
-    FirstScreen(navController = NavController(LocalContext.current))
+    FirstScreen(navController = NavController(LocalContext.current), sharedVM = MySharedVM())
 }
 
 
 @Composable
 @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 fun DarkPreviewFirstScreen() {
-    FirstScreen(navController = NavController(LocalContext.current))
+    FirstScreen(navController = NavController(LocalContext.current), sharedVM = MySharedVM())
 }

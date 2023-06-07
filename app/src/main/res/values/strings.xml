@@ -12,5 +12,6 @@
 
     <string name="hint_enter_value">Enter value</string>
     <string name="data_from_first_screen_is">Data from First screen is %s</string>
+    <string name="data_from_third_screen_is">Data from Third screen is %s</string>
 
 </resources>

@@ -22,9 +22,10 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.nrup.datapassingincompose.R
 import com.nrup.datapassingincompose.utils.Routes
+import com.nrup.datapassingincompose.viewmodel.MySharedVM
 
 @Composable
-fun SecondScreen(navController: NavController, myContent: String?) {
+fun SecondScreen(navController: NavController, myContent: String?,sharedVM: MySharedVM) {
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -73,11 +74,11 @@ fun SecondScreen(navController: NavController, myContent: String?) {
 @Composable
 @Preview(showBackground = true)
 fun LightPreviewSecondScreen() {
-    SecondScreen(navController = NavController(LocalContext.current), myContent = "Testing")
+    SecondScreen(navController = NavController(LocalContext.current), myContent = "Testing",sharedVM = MySharedVM())
 }
 
 @Composable
 @Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
 fun DarkPreviewSecondScreen() {
-    SecondScreen(navController = NavController(LocalContext.current), myContent = "Testing")
+    SecondScreen(navController = NavController(LocalContext.current), myContent = "Testing",sharedVM = MySharedVM())
 }
