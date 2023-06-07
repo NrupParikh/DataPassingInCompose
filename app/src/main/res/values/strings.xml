@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">DataPassingInCompose</string>
+    <string name="title_first_screen">First Screen</string>
+    <string name="title_second_screen">Second Screen</string>
+    <string name="title_third_screen">Third Screen</string>
+
+    <string name="go_to_second_screen">Go to Second Screen</string>
+    <string name="go_to_third_screen">Go to Third Screen</string>
+
+    <string name="back_to_first_screen">Back to First Screen</string>
+    <string name="back_to_second_screen">Back to Second Screen</string>
+
+    <string name="hint_enter_value">Enter value</string>
+    <string name="data_from_first_screen_is">Data from First screen is %s</string>
+
 </resources>

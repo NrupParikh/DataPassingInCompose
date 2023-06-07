@@ -6,41 +6,57 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.nrup.datapassingincompose.composables.FirstScreen
+import com.nrup.datapassingincompose.composables.SecondScreen
+import com.nrup.datapassingincompose.composables.ThirdScreen
 import com.nrup.datapassingincompose.ui.theme.DataPassingInComposeTheme
+import com.nrup.datapassingincompose.utils.Routes
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             DataPassingInComposeTheme {
-                // A surface container using the 'background' color from the theme
+
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    val navController = rememberNavController()
+
+                    NavHost(navController = navController, startDestination = Routes.FIRST_SCREEN) {
+                        composable(route = Routes.FIRST_SCREEN) {
+                            FirstScreen(navController = navController)
+                        }
+
+
+                        composable(
+                            route = Routes.SECOND_SCREEN,
+                            arguments = listOf(
+                                navArgument(Routes.Values.SCREEN_VALUE) {
+                                    type = NavType.StringType
+                                })
+                        ) { backStackEntry ->
+                            SecondScreen(
+                                navController = navController,
+                                myContent = backStackEntry.arguments?.getString(
+                                    Routes.Values.SCREEN_VALUE, "Default value"
+                                )
+                            )
+                        }
+
+                        composable(route = Routes.THIRD_SCREEN) {
+                            ThirdScreen(navController = navController)
+                        }
+                    }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    DataPassingInComposeTheme {
-        Greeting("Android")
     }
 }
