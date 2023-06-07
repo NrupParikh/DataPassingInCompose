@@ -5,6 +5,10 @@
   - SecondScreen : Get FirstScreen value and show on Text composable. Button to navigate ThirdScreen
   - ThirdScreen : Has button to navigate SecondScreen and FirstScreen directly by removing stack.
 
+## Video of my work
+
+[Nrup_data_passing_in_compose.webm](https://github.com/NrupParikh/DataPassingInCompose/assets/108717119/f9d11adf-dd72-4c94-9c2b-1e5211e13f04)
+
 ## Useful methods
 
 - navController.navigate("routeName") : Navigate to particular screen
